@@ -1,0 +1,45 @@
+---
+title: "Mini Assignment 5"
+author: "Aakanksha Baid"
+date: "2/17/2020"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Step 1: Load the training
+
+```{r}
+ctrtrain <- read.csv("tgTrain.csv")
+str(ctrtrain)
+```
+
+## Step 2: Subset data
+
+```{r}
+app1 <- ctrtrain[which(ctrtrain$app == 1),]
+app2 <- ctrtrain[which(ctrtrain$app == 2),]
+```
+
+
+
+## Step 3: Find the mean CTR for the two apps.
+
+```{r}
+summary(app1)
+summary(app2)
+```
+
+From above, the mean CTR for app 1 or mean clicks observed is 0.01216 or 1.22%. 
+The mean CTR for app 2 or mean clicks observed is 0.0006029 or 0.06%. The mean CTR of the two apps are different with app 1 CTR higher than that of app 2.
+
+
+## Step 4: Run a t.test and draw inferences
+
+```{r}
+t.test(app1$click,app2$click)
+```
+
+Based on the results, as p-value < 0.05, there is a statistically significant difference between the CTR of app 1 and app 2. So we reject the null hypothesis that the two mean clicks from app 1 and app2 are equal. 
